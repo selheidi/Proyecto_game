@@ -63,7 +63,7 @@ def UsersRecommend(posted: int):
 
 @app.get("/UsersNotRecommend/{posted}", name='top 3 de juegos MENOS recomendados por usuarios para el año dado.')
     
-def UsersNotRecommend(posted):
+def UsersNotRecommend(posted: int):
     df_año = users_not_recommend[users_not_recommend['posted'] == posted]
 
     top_3_df = df_año[(df_año['sentiment'] >= 0) & (df_año['app_name'].notnull())]
