@@ -8,7 +8,7 @@ app = FastAPI()
 
 play_genre = pd.read_csv('Funcion_1.csv', low_memory=False)
 user_for_genre = pd.read_csv('Funcion_2_jup.csv', low_memory=False)
-users_recommend = pd.read_csv('Funcion_3')
+users_recommend = pd.read_csv('Funcion_3_jup.csv', low_memory=False)
 
 @app.get("/release_year/{genre}", name='año con mas horas jugadas para el género ingresado')
 
@@ -45,17 +45,14 @@ def UserForGenre(genero: str):
 
 @app.get("/UsersRecommend/{posted}", name='top 3 de juegos MÁS recomendados por usuarios para el año dado.')
 
-def UsersRecommend(posted):
+def UsersRecommend(posted: int):
 
     df_año = users_recommend[users_recommend['posted'] == posted]
 
-    # Aplicar las condiciones para obtener el top 3
     top_3_df = df_año[(df_año['sentiment'] >= 0) & (df_año['app_name'].notnull())]
 
-    # Ordenar el DataFrame por 'sentiment' de mayor a menor
     top_3_df = top_3_df.sort_values(by='sentiment', ascending=False).head(3)
 
-    # Crear una lista de diccionarios con el top 3
     top_3_list = []
     for i, row in top_3_df.iterrows():
         top_3_list.append({"Puesto " + str(i + 1): row['app_name']})
@@ -64,3 +61,4 @@ def UsersRecommend(posted):
 
 
     
+
