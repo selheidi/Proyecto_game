@@ -80,7 +80,7 @@ def UsersNotRecommend(posted: int):
 
 @app.get("/Sentiment_Analysis/{release_year}", name='devuelve la cantidad de registros de reseñas de usuarios, Negativos, Positivos y Nulos por año de lanzamiento')
 
-def Sentiment_Analysis(release_year: int):
+'''def Sentiment_Analysis(release_year: int):
 
     df_filtrado = sentiment_analysis_5[sentiment_analysis_5['release_year'] == release_year]
 
@@ -94,5 +94,8 @@ def Sentiment_Analysis(release_year: int):
         "Positive": positivo
     }
 
-    return resultado
+    return resultado'''
+
+def hello(palabra):
+    return palabra 
     
