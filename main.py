@@ -8,6 +8,7 @@ app = FastAPI()
 
 play_genre = pd.read_csv('Funcion_1.csv', low_memory=False)
 user_for_genre = pd.read_csv('Funcion_2_jup.csv', low_memory=False)
+users_recommend = pd.read_csv('Funcion_3')
 
 @app.get("/release_year/{genre}", name='año con mas horas jugadas para el género ingresado')
 
@@ -23,9 +24,6 @@ def PlayTimeGenre(genre: str):
 
     return {"Año de lanzamiento con más horas jugadas para " + genre: int(max_year)}
 
-#if name=="main":
-   
-#   uvicorn.run("main:app",port=8000,reload=True)
 
 
 @app.get("/user_for_genre/{genre}", name='a usuario que acumula más horas jugadas para el género dado y una lista de la acumulación de horas jugadas por año.')
@@ -44,7 +42,25 @@ def UserForGenre(genero: str):
     return {
         "Usuario con más horas jugadas para " + genero: max_playtime_user,
         "Horas jugadas": [{"Año": year, "minutos": hours} for year, hours in zip(grouped['posted'], grouped['playtime_forever'])]}
-#if name=="main":
-#   uvicorn.run("main:app",port=8000,reload=True)
+
+@app.get("/UsersRecommend/{posted}", name='top 3 de juegos MÁS recomendados por usuarios para el año dado.')
+
+def UsersRecommend(posted):
+
+    df_año = users_recommend[users_recommend['posted'] == posted]
+
+    # Aplicar las condiciones para obtener el top 3
+    top_3_df = df_año[(df_año['sentiment'] >= 0) & (df_año['app_name'].notnull())]
+
+    # Ordenar el DataFrame por 'sentiment' de mayor a menor
+    top_3_df = top_3_df.sort_values(by='sentiment', ascending=False).head(3)
+
+    # Crear una lista de diccionarios con el top 3
+    top_3_list = []
+    for i, row in top_3_df.iterrows():
+        top_3_list.append({"Puesto " + str(i + 1): row['app_name']})
+
+    return top_3_list
+
 
     
