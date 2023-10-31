@@ -78,18 +78,20 @@ def UsersNotRecommend(posted: int):
 
     return top_3_dict
 
+
+sentiment_analysis = pd.read_csv('Funcion_5_jup.csv')
+
 @app.get("/Sentiment_Analysis/{release_year}", name='devuelve la cantidad de registros de reseñas de usuarios, Negativos, Positivos y Nulos por año de lanzamiento')
 
 
-def Sentiment_Analysis(release_year: int):
 
-    df_filtrado = sentiment_analysis_5[sentiment_analysis_5['release_year'] == release_year]
-    negativo = df_filtrado['sentiment_0']
-    neutro = df_filtrado['sentiment_1']
-    positivo = df_filtrado['sentiment_2']
-    resultado = {'negativo': negativo, 'neutro': neutro, 'positivo': positivo}
-
-
-    return resultado
+def Sentiment_Analysis(release_year):
+    # Filtrar el DataFrame para obtener las filas que coinciden con el release_year dado
+    filas_coincidentes = sentiment_analysis[sentiment_analysis['release_year'] == release_year]
+    
+    # Convertir las filas coincidentes a una lista de diccionarios
+    filas_lista = filas_coincidentes.to_dict(orient='records')
+    
+    return filas_lista
 
     
