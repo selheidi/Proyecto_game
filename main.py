@@ -78,9 +78,9 @@ def UsersNotRecommend(posted: int):
 
     return top_3_dict
 
-@app.get("/sentiment_analysis/{release_year}", name='devuelve la cantidad de registros de reseñas de usuarios, Negativos, Positivos y Nulos, que se encuentren categorizados con un análisis de sentimiento.')
+@app.get("/Sentiment_Analysis/{release_year}", name='devuelve la cantidad de registros de reseñas de usuarios, Negativos, Positivos y Nulos por año de lanzamiento')
 
-def sentiment_analysis(release_year: int):
+def Sentiment_Analysis(release_year: int):
 
     df_filtrado = sentiment_analysis_5[sentiment_analysis_5['release_year'] == release_year]
 
