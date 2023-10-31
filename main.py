@@ -81,12 +81,14 @@ def UsersNotRecommend(posted: int):
 @app.get("/sentiment_analysis/{relese_year}", name='devuelve la cantidad de registros de reseñas de usuarios, Negativos, Positivos y Nulos, que se encuentren categorizados con un análisis de sentimiento.')
 
 def sentiment_analysis(release_year: int):
+
     df_filtrado = sentiment_analysis_[sentiment_analysis_['release_year'] == release_year]
 
-    negativo = df_filtrado['sentiment_0'].sum()
-    neutral = df_filtrado['sentiment_1'].sum()
-    positivo = df_filtrado['sentiment_2'].sum()
+    negativo = df_filtrado['sentiment_0'].values[0]
+    neutral = df_filtrado['sentiment_1'].values[0]
+    positivo = df_filtrado['sentiment_2'].values[0]
 
+    # Crear un diccionario con los resultados
     resultado = {
         "Negative": negativo,
         "Neutral": neutral,
@@ -94,3 +96,4 @@ def sentiment_analysis(release_year: int):
     }
 
     return resultado
+    
