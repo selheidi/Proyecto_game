@@ -85,7 +85,7 @@ sentiment_analysis = pd.read_csv('Funcion_5_jup.csv')
 
 
 
-def Sentiment_Analysis(release_year):
+def Sentiment_Analysis(release_year: int):
     # Filtrar el DataFrame para obtener las filas que coinciden con el release_year dado
     filas_coincidentes = sentiment_analysis[sentiment_analysis['release_year'] == release_year]
     
