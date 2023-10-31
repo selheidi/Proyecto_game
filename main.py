@@ -53,12 +53,12 @@ def UsersRecommend(posted: int):
 
     top_3_df = top_3_df.sort_values(by='sentiment', ascending=False).head(3)
 
-    top_3_list = []
+    top_3_dict = {}
     for i, row in top_3_df.iterrows():
-        top_3_list.append({"Puesto " + str(i + 1): row['app_name']})
+        puesto = "Puesto " + str(i + 1 - top_3_df.index[0])
+        top_3_dict[puesto] = row['app_name']
 
-    return top_3_list
-
+    return top_3_dict
 
     
 
