@@ -6,8 +6,8 @@ import uvicorn
 
 app = FastAPI()
 
-play_genre = pd.read_csv('data\Funcion_1.csv', low_memory=False)
-user_for_genre = pd.read_csv('data\Funcion_2_jup.csv', low_memory=False)
+play_genre = pd.read_csv('Funcion_1.csv', low_memory=False)
+user_for_genre = pd.read_csv('Funcion_2_jup.csv', low_memory=False)
 
 @app.get("/release_year/{genre}", name='año con mas horas jugadas para el género ingresado')
 
