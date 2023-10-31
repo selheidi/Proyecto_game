@@ -23,6 +23,10 @@ def PlayTimeGenre(genre: str):
 
     return {"Año de lanzamiento con más horas jugadas para " + genre: int(max_year)}
 
+#if name=="main":
+   
+#   uvicorn.run("main:app",port=8000,reload=True)
+
 
 @app.get("/user_for_genre/{genre}", name='a usuario que acumula más horas jugadas para el género dado y una lista de la acumulación de horas jugadas por año.')
 
@@ -39,7 +43,8 @@ def UserForGenre(genero: str):
 
     return {
         "Usuario con más horas jugadas para " + genero: max_playtime_user,
-        "Horas jugadas": [{"Año": year, "minutos": hours} for year, hours in zip(grouped['posted'], grouped['playtime_forever'])]
-    }
+        "Horas jugadas": [{"Año": year, "minutos": hours} for year, hours in zip(grouped['posted'], grouped['playtime_forever'])]}
+#if name=="main":
+#   uvicorn.run("main:app",port=8000,reload=True)
 
     
