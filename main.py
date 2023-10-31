@@ -10,6 +10,7 @@ play_genre = pd.read_csv('Funcion_1.csv', low_memory=False)
 user_for_genre = pd.read_csv('Funcion_2_jup.csv', low_memory=False)
 users_recommend = pd.read_csv('Funcion_3_jup.csv', low_memory=False)
 users_not_recommend = pd.read_csv('Funcion_4_jup.csv', low_memory=False)
+sentiment_analysis_ = pd.read_csv('Funcion_5_jup.csv', low_memory=False)
 
 @app.get("/release_year/{genre}", name='año con mas horas jugadas para el género ingresado')
 
@@ -76,3 +77,20 @@ def UsersNotRecommend(posted: int):
         top_3_dict[puesto] = row['app_name']
 
     return top_3_dict
+
+@app.get("/sentiment_analysis/{relese_year}", name='devuelve la cantidad de registros de reseñas de usuarios, Negativos, Positivos y Nulos, que se encuentren categorizados con un análisis de sentimiento.')
+
+def sentiment_analysis(release_year: int):
+    df_filtrado = sentiment_analysis_[sentiment_analysis_['release_year'] == release_year]
+
+    negativo = df_filtrado['sentiment_0'].sum()
+    neutral = df_filtrado['sentiment_1'].sum()
+    positivo = df_filtrado['sentiment_2'].sum()
+
+    resultado = {
+        "Negative": negativo,
+        "Neutral": neutral,
+        "Positive": positivo
+    }
+
+    return resultado
