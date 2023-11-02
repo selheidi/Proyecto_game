@@ -5,9 +5,9 @@
 ./ETL_SteamGame_User_Reviews_from_json_to_csv
 ./ETL_UserItems_from_json_to_csv
 ./ETL_UserReview_Sentiment
-./Notebook_Funcion_1_y_2A
-./Notebook_Funcion_2_B
-./Notebook_Funcion_3
-./Notebook_Funcion_4
-./Notebook_Funcion_5_jup
+./Notebook_Funcion_1_y_2A.ipynb
+./Notebook_Funcion_2_B.ipynb
+./Notebook_Funcion_3.ipynb
+./Notebook_Funcion_4.ipynb
+./Notebook_Funcion_5_jup.ipynb
 ./ML.ipynb
