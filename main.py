@@ -120,7 +120,7 @@ def recomendacion_usuario(user_id: object):
     recommended_games = [df[df['item_id'] == item_id]['app_name'].iloc[0] for item_id, _ in recommended_games]
 
     return {
-        "recomended_games": recommended_games,
-        "user_id": user_id,
-        "top": 5
+        "A usuarios que son similares a":user_id, 
+        "también les gustó estos 5 juegos": recommended_games,
+         
     }
