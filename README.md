@@ -58,6 +58,8 @@ Michaelele
 ## Video 
 En el enlace puede ver un video de la API en Render y su funcionamieto
 
+https://youtu.be/x4pdoOyIcjg
+
 ## requirements.txt
 En este archivo de texto se colocan las librías que son necesarias para que la API funcione correctamente. 
 
