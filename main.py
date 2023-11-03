@@ -124,12 +124,3 @@ def recomendacion_usuario(user_id: object):
         "user_id": user_id,
         "top": 5
     }
-@app.get("/recomendacion_prueba/{user_id}", name='devuelve lista con 5 juegos recomendados para dicho usuario.')
-def  recomendacion_prueba(user_id:object):
-# Filtrar el DataFrame para obtener las filas que coinciden con el release_year dado
-    filas_coincidentes = df[df['user_id'] == user_id]
-       # Convertir las filas coincidentes a una lista de diccionarios
-    filas_lista = filas_coincidentes.to_dict(orient='records')
-    
-    return filas_lista
-    print(user_id)
