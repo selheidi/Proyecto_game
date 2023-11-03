@@ -97,7 +97,7 @@ def Sentiment_Analysis(release_year: int):
     
     return filas_lista
 
-@app.get("/Recomendar_5_VideoJuegos/{user_id}", name='devuelve lista con 5 juegos recomendados para dicho usuario.')
+@app.get("/recomendacion_usuario/{user_id}", name='devuelve lista con 5 juegos recomendados para dicho usuario.')
 
 
 def recomendacion_usuario(user_id: object):
@@ -126,3 +126,9 @@ def recomendacion_usuario(user_id: object):
         "user_id": user_id,
         "top": 5
     }
+@app.get("/recomendacion_prueba/{user_id}", name='devuelve lista con 5 juegos recomendados para dicho usuario.')
+def  recomendacion_prueba(user_id:object):
+    modelo_svd = joblib.load('modelo_svd_I.pkl')
+    df
+    top=5
+    print(user_id)
