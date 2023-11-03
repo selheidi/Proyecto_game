@@ -13,7 +13,7 @@ users_recommend = pd.read_csv('Funcion_3_jup.csv', low_memory=False)
 users_not_recommend = pd.read_csv('Funcion_4_jup.csv', low_memory=False)
 sentiment_analysis_5 = pd.read_csv('Funcion_5_jup.csv', low_memory=False)
 df = pd.read_csv('df_ML.csv', low_memory=False)
-
+modelo_svd = joblib.load('modelo_svd_I.pkl')
 
 @app.get("/release_year/{genre}", name='año con mas horas jugadas para el género ingresado')
 
@@ -101,8 +101,6 @@ def Sentiment_Analysis(release_year: int):
 
 
 def recomendacion_usuario(user_id: object):
-    modelo_svd = joblib.load('modelo_svd_I.pkl')
-    df
     top=5
 
     # Obtener los juegos que el usuario no ha visto aún
@@ -128,7 +126,10 @@ def recomendacion_usuario(user_id: object):
     }
 @app.get("/recomendacion_prueba/{user_id}", name='devuelve lista con 5 juegos recomendados para dicho usuario.')
 def  recomendacion_prueba(user_id:object):
-    modelo_svd = joblib.load('modelo_svd_I.pkl')
-    df
-    top=5
+# Filtrar el DataFrame para obtener las filas que coinciden con el release_year dado
+    filas_coincidentes = df[df['user_id'] == user_id]
+       # Convertir las filas coincidentes a una lista de diccionarios
+    filas_lista = filas_coincidentes.to_dict(orient='records')
+    
+    return filas_lista
     print(user_id)
