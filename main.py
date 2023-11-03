@@ -100,7 +100,7 @@ def Sentiment_Analysis(release_year: int):
 @app.get("/Recomendar_5_VideoJuegos/{user_id}", name='devuelve lista con 5 juegos recomendados para dicho usuario.')
 
 
-def recomendacion_usuario(user_id: str):
+def recomendacion_usuario(user_id: object):
     modelo_svd = joblib.load('modelo_svd_I.pkl')
     df
     top=5
